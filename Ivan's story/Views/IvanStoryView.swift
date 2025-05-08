@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct IvanStory: View {
 
     var body: some View {
         NavigationStack {
@@ -37,6 +37,4 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+
