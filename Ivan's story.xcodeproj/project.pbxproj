@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BD15A2B82DCE0A9800C5FAEB /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BD15A2B72DCE0A9800C5FAEB /* ConfettiSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BD704B372DCB6AD1004C0A97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD15A2B82DCE0A9800C5FAEB /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = "Ivan's story";
 			packageProductDependencies = (
+				BD15A2B72DCE0A9800C5FAEB /* ConfettiSwiftUI */,
 			);
 			productName = "Ivan's story";
 			productReference = BD704B262DCB6AD0004C0A97 /* Ivan's story.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = BD704B1D2DCB6AD0004C0A97;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BD15A2B62DCE099000C5FAEB /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BD704B272DCB6AD0004C0A97 /* Products */;
 			projectDirPath = "";
@@ -562,6 +571,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BD15A2B62DCE099000C5FAEB /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BD15A2B72DCE0A9800C5FAEB /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD15A2B62DCE099000C5FAEB /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BD704B1E2DCB6AD0004C0A97 /* Project object */;
 }

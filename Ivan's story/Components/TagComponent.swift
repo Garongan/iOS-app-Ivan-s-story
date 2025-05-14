@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct TagComponent: View {
+    var icon: String
+    var text: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(icon)
+                .font(.largeTitle)
+            
+            Text(text)
+                .font(.caption2)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(4)
+        .background(Color(.systemGroupedBackground))
+        .cornerRadius(8)
+        
     }
-}
-
-#Preview {
-    TagComponent()
 }

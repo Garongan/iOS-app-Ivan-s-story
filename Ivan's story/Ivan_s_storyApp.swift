@@ -11,7 +11,7 @@ import SwiftUI
 struct Ivan_s_storyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            IvanStoryView()
         }
     }
 }

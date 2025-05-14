@@ -6,13 +6,35 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
-struct IvanStoryDetail: View {
+struct IvanStoryDetailView: View {
+    @State private var currentPage = 0
+    @State private var trigger: Int = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TabView(selection: $currentPage, content: {
+                ForEach(0..<6) { index in
+                    StoryComponent(index: index, asset: "StorySet\(index)"
+                    )
+                }
+                .onChange(of: currentPage) {
+                    if (currentPage == 5) {
+                        trigger = trigger + 1
+                    }
+                }
+                
+            })
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            
+            CustomPageIndicatorComponent(numberOfPages: 6, currentPage: $currentPage)
+        }
+        .confettiCannon(trigger: $trigger, num: 100)
+        .safeAreaPadding()
     }
 }
 
 #Preview {
-    IvanStoryDetail()
+    IvanStoryView()
 }

@@ -8,11 +8,39 @@
 import SwiftUI
 
 struct SlideShowComponent: View {
+    @State private var currentImageIndex: Int = 0
+    @Environment(\.colorScheme) private var colorScheme
+    
+    let images = ["ProfilePic1", "ProfilePic2"]
+    let timer = Timer.publish(every: 5, on: .main, in: .common)
+        .autoconnect()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            TabView(selection: $currentImageIndex) {
+                ForEach(0..<images.count, id: \.self) { index in
+                    Image(images[index])
+                        .resizable()
+                        .scaledToFill()
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .frame(height: 400)
+            
+            Spacer()
+                .onReceive(timer) { _ in
+                    withAnimation {
+                        currentImageIndex = (currentImageIndex + 1) % images.count
+                    }
+                }
+            
+            LinearGradient(gradient: Gradient(colors: [colorScheme == .dark ? .white : .black, .clear]), startPoint: .bottom, endPoint: .top)
+                .frame(height: 200)
+                .offset(y: 200)
+        }
     }
 }
 
 #Preview {
-    SlideShowComponent()
+    IvanStoryView()
 }

@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ButtonComponent: View {
+    var view: AnyView
+    var destination: AnyView
+    var filled: Bool = true
+    var fillWidth: CGFloat?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationLink(destination: destination) {
+            view
+        }
+        .frame(maxWidth: fillWidth)
+        .background(filled ? Color.accentColor : Color.clear)
+        
     }
 }
 
 #Preview {
-    ButtonComponent()
+    IvanStoryView()
 }

@@ -7,57 +7,58 @@
 
 import SwiftUI
 
-struct StoryCardComponent: View {
-    var greeting: String
-    var name: String
-    var caption: String
-    var personalitys: [String: String]
-    @Environment(\.colorScheme) var colorScheme
-    
+struct EnterStoryCardComponent: View {
     var body: some View {
-        ZStack {
-            SlideShowComponent()
-            
-            ZStack {
-                Rectangle()
-                    .fill(.ultraThinMaterial)
-                    .frame(height: 250)
-                    .blur(radius: 10)
-                    .mask(LinearGradient(gradient: Gradient(colors: [colorScheme == .light ? .black : .white, .clear]),startPoint: .bottom,endPoint: .top))
-                    .frame(maxHeight: .infinity, alignment: .bottom)
-                
-                VStack(alignment: .leading) {
-                    Spacer()
+        ButtonComponent(
+            view: AnyView(
+                VStack(spacing: 0) {
+                    Image("Story1Banner")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 250)
                     
-                    VStack(alignment: .leading) {
-                        Text(greeting)
-                            .font(.headline)
-                            .foregroundStyle(.white)
+                    ZStack {
+                        LinearGradient(
+                            colors: [.blue, .cyan],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                        .hueRotation(.degrees(45))
+                        .ignoresSafeArea()
                         
-                        Text(name)
-                            .font(.title)
-                            .fontWeight(.bold)
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("See Ivan's story")
+                                    .font(.headline)
+                                
+                                Text("Read the ivan's journey to get inspired! ")
+                                    .font(.caption)
+                            }
                             .foregroundStyle(.white)
-                        
-                        Text(caption)
-                            .font(.caption)
+                            
+                            Spacer()
+                            
+                            Image(
+                                systemName: "chevron.right"
+                            )
                             .foregroundStyle(.white)
-                    }
-                    .padding(.horizontal)
-                    
-                    HStack {
-                        ForEach(Array(personalitys), id: \.key) { key, value in
-                            TagComponent(icon: key, text: value)
+                            
                         }
-                        .padding(.vertical)
+                        .padding()
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom)
+                    
                 }
-            }
-        }
-        .background(colorScheme == .dark ? Color.white.opacity(0.7) : Color.black.opacity(0.7))
-        .cornerRadius(8)
+                .background(Color(.systemBackground))
+                .cornerRadius(16)
+                .padding()
+                
+            ),
+            destination: AnyView(IvanStoryDetailView()),
+            filled: false
+        )
     }
 }
 
+#Preview {
+    IvanStoryView()
+}
