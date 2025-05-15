@@ -11,12 +11,6 @@ struct IvanStoryView: View {
     @Environment(\.colorScheme) private var colorScheme
     let greeting = "Hello, I am"
     let name = "Ivan Sunjaya"
-    let personalitys: [String: String] = [
-        "😄": "Cheerfull",
-        "😶": "Introvert",
-        "⚽️": "Sports",
-        "🇰🇷": "Korean"
-    ]
     let caption = "I am a person who interested in sports and speak korean also in free time i do my hobby"
     let icons: [String] = ["soccerball", "person.wave.2"]
     
@@ -50,8 +44,7 @@ struct IvanStoryView: View {
                                 ProfileCard(
                                     greeting: greeting,
                                     name: name,
-                                    caption: caption,
-                                    personalitys: personalitys
+                                    caption: caption
                                 )
                                 
                                 EnterStoryCardComponent()

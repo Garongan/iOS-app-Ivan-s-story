@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD15A2B82DCE0A9800C5FAEB /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BD15A2B72DCE0A9800C5FAEB /* ConfettiSwiftUI */; };
+		BD8F091C2DD4D96C00199409 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BD8F091B2DD4D96C00199409 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD15A2B82DCE0A9800C5FAEB /* ConfettiSwiftUI in Frameworks */,
+				BD8F091C2DD4D96C00199409 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,7 @@
 			name = "Ivan's story";
 			packageProductDependencies = (
 				BD15A2B72DCE0A9800C5FAEB /* ConfettiSwiftUI */,
+				BD8F091B2DD4D96C00199409 /* Lottie */,
 			);
 			productName = "Ivan's story";
 			productReference = BD704B262DCB6AD0004C0A97 /* Ivan's story.app */;
@@ -203,6 +206,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				BD15A2B62DCE099000C5FAEB /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				BD8F091A2DD4D96C00199409 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BD704B272DCB6AD0004C0A97 /* Products */;
@@ -581,6 +585,14 @@
 				minimumVersion = 2.0.3;
 			};
 		};
+		BD8F091A2DD4D96C00199409 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -588,6 +600,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BD15A2B62DCE099000C5FAEB /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		BD8F091B2DD4D96C00199409 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD8F091A2DD4D96C00199409 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

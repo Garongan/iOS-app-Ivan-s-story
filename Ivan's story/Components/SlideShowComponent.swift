@@ -11,7 +11,7 @@ struct SlideShowComponent: View {
     @State private var currentImageIndex: Int = 0
     @Environment(\.colorScheme) private var colorScheme
     
-    let images = ["ProfilePic1", "ProfilePic2"]
+    @State var images = ["ProfilePic1", "ProfilePic2", "ProfilePic3"]
     let timer = Timer.publish(every: 5, on: .main, in: .common)
         .autoconnect()
     

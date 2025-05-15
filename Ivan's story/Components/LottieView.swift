@@ -8,7 +8,7 @@
 import SwiftUI
 import Lottie
 
-struct LottieWrapper: UIViewRepresentable {
+struct LottieView: UIViewRepresentable {
     var animationName: String
        var loopMode: LottieLoopMode = .loop
        var speed: CGFloat = 1.0

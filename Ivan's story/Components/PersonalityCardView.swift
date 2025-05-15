@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-struct TagComponent: View {
+struct PersonalityCardView: View {
     var personality: Personality
     
     @State var shouldPresentSheet = false
     
     var body: some View {
-        VStack{
+        VStack {
             Image(systemName: personality.icon)
+            
+            Spacer()
+                .frame(height: 4)
             
             Text(personality.label)
                 .font(.caption)
