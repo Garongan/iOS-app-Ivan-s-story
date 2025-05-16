@@ -16,12 +16,13 @@ struct IvanStoryDetailView: View {
         VStack {
             TabView(selection: $currentPage, content: {
                 ForEach(0..<6) { index in
-                    StoryComponent(index: index, asset: "StorySet\(index)"
-                    )
+                    StoryComponent(index: index, asset: "StorySet\(index)")
                 }
                 .onChange(of: currentPage) {
                     if (currentPage == 5) {
-                        trigger = trigger + 1
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            trigger = trigger + 1
+                        }
                     }
                 }
                 
@@ -37,5 +38,5 @@ struct IvanStoryDetailView: View {
 }
 
 #Preview {
-    IvanStoryView()
+    IvanStoryDetailView()
 }

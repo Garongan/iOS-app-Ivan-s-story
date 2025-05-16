@@ -13,25 +13,27 @@ struct StoryComponent: View {
 
     
     var body: some View {
-        VStack{
+        VStack(spacing: 16)  {
             Image(asset)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 400)
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(16)
+            
+            AnimatedText(text: storyPages[index])
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(16)
             
             Spacer()
-            
-            GroupBox {
-                Text(storyPages[index])
-            }
-            
-            Spacer()
-
         }
 
     }
 }
 
 #Preview {
-    IvanStoryView()
+    IvanStoryDetailView()
 }

@@ -25,7 +25,7 @@ struct CustomPageIndicatorComponent: View {
                                 .symbolEffect(.bounce.up.byLayer, options: .nonRepeating, value: currentPage)
                         }
                         .foregroundStyle(.white)
-
+                        
                     })
                     .frame(width: 32, height: 32)
                     .foregroundStyle(Color.accentColor)
@@ -62,7 +62,7 @@ struct CustomPageIndicatorComponent: View {
                                 .symbolEffect(.bounce.up.byLayer, options: .nonRepeating, value: currentPage)
                         }
                         .foregroundStyle(.white)
-
+                        
                     })
                     .frame(width: 32, height: 32)
                     .foregroundStyle(Color.accentColor)
@@ -72,6 +72,5 @@ struct CustomPageIndicatorComponent: View {
                 Spacer()
             }
         }
-        .padding()
     }
 }
