@@ -31,6 +31,7 @@ struct IvanStoryDetailView: View {
             CustomPageIndicatorComponent(numberOfPages: 6, currentPage: $currentPage)
         }
         .confettiCannon(trigger: $trigger, num: 100)
+        .background(Color(.secondarySystemBackground))
         .safeAreaPadding()
     }
 }

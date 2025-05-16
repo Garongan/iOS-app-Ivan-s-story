@@ -9,15 +9,8 @@ import SwiftUI
 
 struct IvanStoryView: View {
     @Environment(\.colorScheme) private var colorScheme
-    let greeting = "Hello, I am"
-    let name = "Ivan Sunjaya"
-    let caption = "I am a person who interested in sports and speak korean also in free time i do my hobby"
-    let icons: [String] = ["soccerball", "person.wave.2"]
-    
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    @State private var isSlideUpRectangle: Bool = false
+    @State private var isSlideUpCard: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -38,19 +31,30 @@ struct IvanStoryView: View {
                                         topTrailingRadius: 16
                                     )
                                 )
-                                .offset(y: -24)
+                                .offset(y: isSlideUpRectangle ? -24 : 200)
+                                .opacity(isSlideUpRectangle ? 1 : 0)
+                                .animation(.easeInOut(duration: 1), value: isSlideUpRectangle)
+                                .onAppear {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        isSlideUpRectangle = true
+                                    }
+                                }
                             
                             VStack {
-                                ProfileCard(
-                                    greeting: greeting,
-                                    name: name,
-                                    caption: caption
-                                )
+                                ProfileCard()
                                 
                                 EnterStoryCardComponent()
                             }
-                            .offset(y: -64)
+                            .offset(y: isSlideUpCard ? -64 : 200)
+                            .opacity(isSlideUpCard ? 1 : 0)
+                            .animation(.easeInOut(duration: 1), value: isSlideUpCard)
+                            .onAppear {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    isSlideUpCard = true
+                                }
+                            }
                         }
+                        
                     }
                     .navigationTitle("Ivan's Story")
                 }

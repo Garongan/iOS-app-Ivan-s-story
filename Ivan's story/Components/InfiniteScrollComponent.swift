@@ -7,61 +7,111 @@
 
 import SwiftUI
 
-struct InfiniteScrollComponent: View {
-    let items: [String] = ["item1", "item2", "item3", "item4"]
-    @State private var scrollOffset: CGFloat = 0
-    @State private var currentIndex: Int = 0
+class Store: ObservableObject {
+    @Published var items: [MyApps]
     
-    private let groupCount: Int = 3
+    init() {
+        self.items = myapps
+    }
+}
+
+struct MyApps: Identifiable {
+    var id: Int
+    var name: String
+    var icon: String
+}
+
+let myapps: [MyApps] = [
+    MyApps(id: 0, name: "Photoshop", icon: "psl"),
+    MyApps(id: 1, name: "Adobe Illustrator", icon: "ail"),
+    MyApps(id: 2, name: "Premiere", icon: "prl"),
+    MyApps(id: 3, name: "After Effect", icon: "ael"),
+    MyApps(id: 4, name: "Figma", icon: "fig"),
+    MyApps(id: 5, name: "Media Bang", icon: "mbl"),
+    MyApps(id: 6, name: "Blender", icon: "ble"),
+    MyApps(id: 7, name: "Canva", icon: "can"),
+]
+
+struct Selector: View {
     
+    @StateObject var store = Store()
+    @State private var snappedItem = 0.0
+    @State private var draggingItem = 0.0
+    @State var activeIndex: Int = 0
+    @State var appName: String = ""
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    ForEach(0..<groupCount, id: \.self) { group in
-                        ForEach(items.indices, id: \.self) { index in
-                            Text(items[index])
-                                .frame(width: geometry.size.width - 60, height: 200)
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                                .foregroundColor(.white)
-                                .font(.title)
-                        }
-                    }
-                }
-                .background(
-                    GeometryReader { innerGeo in
-                        Color.clear
-                            .preference(
-                                key: ScrollOffsetKey.self,
-                                value: innerGeo.frame(in: .named("scroll")).origin.x
-                            )
-                    }
-                )
-            }
-            .coordinateSpace(name: "scroll")
-            .onPreferenceChange(ScrollOffsetKey.self) { offset in
-                let itemWidth: CGFloat = geometry.size.width - 60 + 20
-                let totalWidth = itemWidth * CGFloat(items.count * groupCount)
+        
+        ZStack {
+            ForEach(store.items) { item in
                 
-                if offset <= -totalWidth + 2 * itemWidth {
-                    scrollOffset = -itemWidth * CGFloat(items.count)
-                } else if offset >= -itemWidth {
-                    scrollOffset = -itemWidth * CGFloat(items.count * (groupCount - 2))
+                ZStack {
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(Color.blue)
+                        .shadow(radius: 5)
+                    Text(item.name)
+                        
                 }
+                .frame(width: 150, height: 150)
+                .scaleEffect(1.0 - abs(distance(item.id)) * 0.2 )
+                .opacity(1.0 - abs(distance(item.id)) * 0.3 )
+                .offset(x: myXOffset(item.id), y: 0)
+                .zIndex(1.0 - abs(distance(item.id)) * 0.1)
+                .onTapGesture {
+                    withAnimation {
+                        draggingItem = Double(item.id)
+                    }
+                    self.appName = store.items[item.id].name
+                }
+                
             }
         }
+        .gesture(getDragGesture())
+        .onAppear {
+            if store.items.indices.contains(0) {
+                appName = store.items[0].name
+            }
+        }
+        Text(appName)
+            .padding(.top)
+            .font(.headline)
     }
     
-    struct ScrollOffsetKey: PreferenceKey {
-        static var defaultValue: CGFloat = 0
-        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-            value = nextValue()
-        }
+    private func getDragGesture() -> some Gesture {
+        DragGesture()
+            .onChanged { value in
+                draggingItem = snappedItem + value.translation.width / 100
+            }
+            .onEnded { value in
+                withAnimation {
+                    draggingItem = snappedItem + value.predictedEndTranslation.width / 100
+                    draggingItem = round(draggingItem).remainder(dividingBy: Double(store.items.count))
+                    snappedItem = draggingItem
+                    
+                    // Get active index
+                    self.activeIndex = store.items.count + Int(draggingItem)
+                    
+                    
+                    // Basically, if its more than the stored count, reset to 1
+                    // Simple way of making it infinite
+                    if self.activeIndex > store.items.count || Int(draggingItem) >= 0 {
+                        self.activeIndex = Int(draggingItem)
+                    }
+                    self.appName = store.items[self.activeIndex].name
+                }
+            }
+    }
+    
+    func distance(_ item: Int) -> Double {
+        return (draggingItem - Double(item)).remainder(dividingBy: Double(store.items.count))
+    }
+    
+    func myXOffset(_ item: Int) -> Double {
+        let angle = Double.pi * 1.2 / Double(store.items.count) * distance(item)
+        return sin(angle) * 200
     }
 }
 
 #Preview {
-    InfiniteScrollComponent()
+    Selector()
 }

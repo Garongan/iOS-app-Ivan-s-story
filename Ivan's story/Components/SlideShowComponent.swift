@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct SlideShowComponent: View {
-    @State private var currentImageIndex: Int = 0
-    @Environment(\.colorScheme) private var colorScheme
-    
-    @State var images = ["ProfilePic1", "ProfilePic2", "ProfilePic3"]
-    let timer = Timer.publish(every: 5, on: .main, in: .common)
+    let timer = Timer.publish(every: 3, on: .main, in: .common)
         .autoconnect()
+    
+    @State private var currentImageIndex: Int
+    @Environment(\.colorScheme) private var colorScheme
+    @State private var isOnStart: Bool = true
+    
+    init () {
+        currentImageIndex = images.count / 2
+    }
     
     var body: some View {
         ZStack{
@@ -30,7 +34,17 @@ struct SlideShowComponent: View {
             Spacer()
                 .onReceive(timer) { _ in
                     withAnimation {
-                        currentImageIndex = (currentImageIndex + 1) % images.count
+                        if isOnStart && currentImageIndex < images.count - 1 {
+                            currentImageIndex += 1
+                            if currentImageIndex == images.count - 1 {
+                                isOnStart = false
+                            }
+                        } else if !isOnStart && (currentImageIndex != 0) {
+                            currentImageIndex -= 1
+                            if currentImageIndex == 0 {
+                                isOnStart = true
+                            }
+                        }
                     }
                 }
             
