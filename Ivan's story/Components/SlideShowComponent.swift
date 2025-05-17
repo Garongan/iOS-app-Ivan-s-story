@@ -14,6 +14,7 @@ struct SlideShowComponent: View {
     @State private var currentImageIndex: Int
     @Environment(\.colorScheme) private var colorScheme
     @State private var isOnStart: Bool = true
+    @State var isShowGradient: Bool = false
     
     init () {
         currentImageIndex = images.count / 2
@@ -51,6 +52,13 @@ struct SlideShowComponent: View {
             LinearGradient(gradient: Gradient(colors: [colorScheme == .dark ? .white : .black, .clear]), startPoint: .bottom, endPoint: .top)
                 .frame(height: 200)
                 .offset(y: 200)
+                .opacity(isShowGradient ? 1 : 0)
+                .animation(.easeInOut, value: isShowGradient)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 3) {
+                        isShowGradient.toggle()
+                    }
+                }
         }
     }
 }

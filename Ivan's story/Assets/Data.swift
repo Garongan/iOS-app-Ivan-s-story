@@ -37,3 +37,5 @@ let storyPages: [String] = [
     "From introvert to communicator, I’m learning to step up, speak out, and own my journey.",
     "Congrats you already read the story!"
 ]
+
+let globalDelayAnimation: Double = 0.5

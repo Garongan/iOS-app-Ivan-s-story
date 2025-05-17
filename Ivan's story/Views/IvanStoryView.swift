@@ -8,61 +8,34 @@
 import SwiftUI
 
 struct IvanStoryView: View {
-    @Environment(\.colorScheme) private var colorScheme
-    @State private var isSlideUpRectangle: Bool = false
-    @State private var isSlideUpCard: Bool = false
+    @State private var isShowCenterBanner: Bool = false
+    @State private var isChangeToMainView: Bool = false
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color(.secondarySystemBackground)
-                    .ignoresSafeArea()
-                
-                ScrollView {
-                    VStack {
-                        SlideShowComponent()
-                        
-                        ZStack {
-                            Rectangle()
-                                .fill(Color(.secondarySystemBackground))
-                                .clipShape(
-                                    .rect(
-                                        topLeadingRadius: 16,
-                                        topTrailingRadius: 16
-                                    )
-                                )
-                                .offset(y: isSlideUpRectangle ? -24 : 200)
-                                .opacity(isSlideUpRectangle ? 1 : 0)
-                                .animation(.easeInOut(duration: 1), value: isSlideUpRectangle)
-                                .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                        isSlideUpRectangle = true
-                                    }
-                                }
-                            
-                            VStack {
-                                ProfileCard()
-                                
-                                EnterStoryCardComponent()
-                            }
-                            .offset(y: isSlideUpCard ? -64 : 200)
-                            .opacity(isSlideUpCard ? 1 : 0)
-                            .animation(.easeInOut(duration: 1), value: isSlideUpCard)
-                            .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    isSlideUpCard = true
-                                }
-                            }
-                        }
-                        
+            Image("ProfilePic2")
+                .resizable()
+                .scaledToFit()
+                .padding()
+                .opacity(isShowCenterBanner ? 1 : 0)
+                .animation(.easeInOut, value: isShowCenterBanner)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation) {
+                        isShowCenterBanner.toggle()
                     }
-                    .navigationTitle("Ivan's Story")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
+                        isShowCenterBanner.toggle()
+                    }
                 }
-            }
-            
+                .navigationDestination(isPresented: $isChangeToMainView) {
+                    MainView()
+                }
         }
-        .scrollContentBackground(.hidden)
-        
+        .onAppear {
+            Timer.scheduledTimer(withTimeInterval: globalDelayAnimation * 2, repeats: false) { _ in
+                isChangeToMainView = true
+            }
+        }
     }
 }
 
