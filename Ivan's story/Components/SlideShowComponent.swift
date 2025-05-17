@@ -56,7 +56,7 @@ struct SlideShowComponent: View {
                 .animation(.easeInOut, value: isShowGradient)
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 3) {
-                        isShowGradient.toggle()
+                        isShowGradient = true
                     }
                 }
         }

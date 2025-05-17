@@ -27,7 +27,7 @@ struct MainView: View {
                             .animation(.easeInOut, value: isShowSlideShow)
                             .onAppear() {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
-                                    isShowSlideShow.toggle()
+                                    isShowSlideShow = true
                                 }
                             }
                         
@@ -45,7 +45,7 @@ struct MainView: View {
                                 .animation(.easeInOut(duration: 1), value: isSlideUpRectangle)
                                 .onAppear {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
-                                        isSlideUpRectangle.toggle()
+                                        isSlideUpRectangle = true
                                     }
                                 }
                             
@@ -59,7 +59,7 @@ struct MainView: View {
                             .animation(.easeInOut(duration: 1), value: isSlideUpCard)
                             .onAppear {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 3) {
-                                    isSlideUpCard.toggle()
+                                    isSlideUpCard = true
                                 }
                             }
                         }
@@ -72,9 +72,16 @@ struct MainView: View {
         }
         .scrollContentBackground(.hidden)
         .navigationBarBackButtonHidden(true)
+        .opacity(isShowSlideShow ? 1 : 0)
+        .animation(.easeInOut, value: isShowSlideShow)
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation) {
+                isShowSlideShow = true
+            }
+        }
     }
 }
 
 #Preview {
-    MainView()
+    IvanStoryView()
 }
