@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  ProfileView.swift
 //  Ivan's story
 //
 //  Created by Alvindo Tri Jatmiko on 17/05/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct ProfileView: View {
     @Environment(\.colorScheme) private var colorScheme
     @State private var isSlideUpRectangle: Bool = false
     @State private var isSlideUpCard: Bool = false
@@ -26,11 +26,8 @@ struct MainView: View {
                             .opacity(isShowSlideShow ? 1 : 0)
                             .animation(.easeInOut, value: isShowSlideShow)
                             .onAppear() {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
-                                    isShowSlideShow = true
-                                }
+                                isShowSlideShow = true
                             }
-                        
                         ZStack {
                             Rectangle()
                                 .fill(Color(.secondarySystemBackground))
@@ -40,13 +37,11 @@ struct MainView: View {
                                         topTrailingRadius: 16
                                     )
                                 )
-                                .offset(y: isSlideUpRectangle ? -24 : 200)
+                                .offset(y: -24)
                                 .opacity(isSlideUpRectangle ? 1 : 0)
                                 .animation(.easeInOut(duration: 1), value: isSlideUpRectangle)
                                 .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
-                                        isSlideUpRectangle = true
-                                    }
+                                    isSlideUpRectangle = true
                                 }
                             
                             VStack {
@@ -58,7 +53,7 @@ struct MainView: View {
                             .opacity(isSlideUpCard ? 1 : 0)
                             .animation(.easeInOut(duration: 1), value: isSlideUpCard)
                             .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 3) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
                                     isSlideUpCard = true
                                 }
                             }
@@ -68,20 +63,17 @@ struct MainView: View {
                     .navigationTitle("Ivan's Story")
                 }
             }
-            
         }
         .scrollContentBackground(.hidden)
         .navigationBarBackButtonHidden(true)
         .opacity(isShowSlideShow ? 1 : 0)
         .animation(.easeInOut, value: isShowSlideShow)
         .onAppear() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation) {
-                isShowSlideShow = true
-            }
+            isShowSlideShow = true
         }
     }
 }
 
 #Preview {
-    IvanStoryView()
+    ContentView()
 }

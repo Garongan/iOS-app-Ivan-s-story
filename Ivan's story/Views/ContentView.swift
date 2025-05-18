@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IvanStoryView: View {
+struct ContentView: View {
     @State private var isShowCenterBanner: Bool = false
     @State private var isChangeToMainView: Bool = false
     
@@ -38,7 +38,7 @@ struct IvanStoryView: View {
             }
             
             if isChangeToMainView {
-                MainView()
+                ProfileView()
             }
         }
     }
@@ -46,5 +46,5 @@ struct IvanStoryView: View {
 
 
 #Preview {
-    IvanStoryView()
+    ContentView()
 }

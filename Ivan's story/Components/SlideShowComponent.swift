@@ -64,5 +64,5 @@ struct SlideShowComponent: View {
 }
 
 #Preview {
-    IvanStoryView()
+    ContentView()
 }

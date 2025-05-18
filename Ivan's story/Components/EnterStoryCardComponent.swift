@@ -53,12 +53,12 @@ struct EnterStoryCardComponent: View {
                 .padding()
                 
             ),
-            destination: AnyView(IvanStoryDetailView()),
+            destination: AnyView(StoryView()),
             filled: false
         )
     }
 }
 
 #Preview {
-    IvanStoryView()
+    ContentView()
 }

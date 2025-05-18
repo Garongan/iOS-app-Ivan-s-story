@@ -1,5 +1,5 @@
 //
-//  IvanStoryDetail.swift
+//  StoryView.swift
 //  Ivan's story
 //
 //  Created by Alvindo Tri Jatmiko on 07/05/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ConfettiSwiftUI
 
-struct IvanStoryDetailView: View {
+struct StoryView: View {
     @State private var currentPage = 0
     @State private var trigger: Int = 0
     
@@ -38,5 +38,5 @@ struct IvanStoryDetailView: View {
 }
 
 #Preview {
-    IvanStoryDetailView()
+    StoryView()
 }

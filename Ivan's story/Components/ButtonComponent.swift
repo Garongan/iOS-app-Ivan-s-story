@@ -24,5 +24,5 @@ struct ButtonComponent: View {
 }
 
 #Preview {
-    IvanStoryView()
+    ContentView()
 }

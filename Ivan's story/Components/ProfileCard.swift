@@ -37,5 +37,5 @@ struct ProfileCard: View {
 }
 
 #Preview {
-    IvanStoryView()
+    ContentView()
 }

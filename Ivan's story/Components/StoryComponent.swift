@@ -35,5 +35,5 @@ struct StoryComponent: View {
 }
 
 #Preview {
-    IvanStoryDetailView()
+    StoryView()
 }

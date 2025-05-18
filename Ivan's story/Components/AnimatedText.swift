@@ -41,5 +41,5 @@ struct AnimatedText: View {
 }
 
 #Preview {
-    IvanStoryDetailView()
+    StoryView()
 }
