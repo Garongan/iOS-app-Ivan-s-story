@@ -39,3 +39,4 @@ let storyPages: [String] = [
 ]
 
 let globalDelayAnimation: Double = 0.5
+let numberOfPages: Int = 6

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(\.colorScheme) private var colorScheme
-    @State private var isSlideUpRectangle: Bool = false
+    @State private var isShowRectangle: Bool = false
     @State private var isSlideUpCard: Bool = false
     @State private var isShowSlideShow: Bool = false
     
@@ -38,10 +38,10 @@ struct ProfileView: View {
                                     )
                                 )
                                 .offset(y: -24)
-                                .opacity(isSlideUpRectangle ? 1 : 0)
-                                .animation(.easeInOut(duration: 1), value: isSlideUpRectangle)
+                                .opacity(isShowRectangle ? 1 : 0)
+                                .animation(.easeInOut(duration: 1), value: isShowRectangle)
                                 .onAppear {
-                                    isSlideUpRectangle = true
+                                    isShowRectangle = true
                                 }
                             
                             VStack {
@@ -53,7 +53,7 @@ struct ProfileView: View {
                             .opacity(isSlideUpCard ? 1 : 0)
                             .animation(.easeInOut(duration: 1), value: isSlideUpCard)
                             .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation * 2) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation) {
                                     isSlideUpCard = true
                                 }
                             }

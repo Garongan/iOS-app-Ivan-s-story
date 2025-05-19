@@ -21,16 +21,16 @@ struct StoryComponent: View {
                 .padding()
                 .background(Color(.systemBackground))
                 .cornerRadius(16)
+                .padding(.horizontal)
             
             AnimatedText(text: storyPages[index])
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color(.systemBackground))
                 .cornerRadius(16)
-            
-            Spacer()
+                .padding(.horizontal)
         }
-
+        .frame(height: UIScreen.main.bounds.height)
     }
 }
 

@@ -22,6 +22,7 @@ struct AnimatedText: View {
             .onDisappear {
                 timer?.invalidate()
             }
+            .frame(height: 100)
             
     }
     

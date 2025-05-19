@@ -7,29 +7,36 @@
 
 import SwiftUI
 import ConfettiSwiftUI
+import VTabView
 
 struct StoryView: View {
     @State private var currentPage = 0
     @State private var trigger: Int = 0
     
     var body: some View {
-        VStack {
-            TabView(selection: $currentPage, content: {
-                ForEach(0..<6) { index in
+        ZStack {
+            VTabView(selection: $currentPage)  {
+                ForEach(0..<numberOfPages, id: \.self) { index in
                     StoryComponent(index: index, asset: "StorySet\(index)")
                 }
                 .onChange(of: currentPage) {
-                    if (currentPage == 5) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    if (currentPage == numberOfPages - 1) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + globalDelayAnimation) {
                             trigger = trigger + 1
                         }
                     }
                 }
-                
-            })
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            }
+            .tabViewStyle(.page)
             
-            CustomPageIndicatorComponent(numberOfPages: 6, currentPage: $currentPage)
+            HStack {
+                Spacer()
+                
+                CustomPageIndicatorComponent(numberOfPages: numberOfPages, currentPage: $currentPage)
+            }
+            .padding(.horizontal)
+            .frame(width: UIScreen.main.bounds.width)
+
         }
         .confettiCannon(trigger: $trigger, num: 100)
         .background(Color(.secondarySystemBackground))

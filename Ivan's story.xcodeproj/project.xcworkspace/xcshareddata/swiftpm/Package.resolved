@@ -1,5 +1,5 @@
 {
-  "originHash" : "8dee07f1983041ff78594e949a1865b17ef893c0a54266a23bff5c084a7a70e8",
+  "originHash" : "8d1064748d07f7701bf8ada3c2d267d8bc6bc9807b721397b5957f19a928d590",
   "pins" : [
     {
       "identity" : "confettiswiftui",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "047aa81b77adcbf583a966dfef620d17650cc656",
         "version" : "4.5.1"
+      }
+    },
+    {
+      "identity" : "swiftui-vertical-tab-view",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lorenzofiamingo/swiftui-vertical-tab-view.git",
+      "state" : {
+        "revision" : "e029f75f9c43e52e351528a78e293a997200b9f8",
+        "version" : "2.0.0"
       }
     }
   ],
